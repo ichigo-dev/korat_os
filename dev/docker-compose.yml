@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+
+  ##############################################################################
+  # rust
+  ##############################################################################
+  rust:
+    container_name: ${RUST_CONTAINER}
+    working_dir: /var/korat_os
+    build:
+      context: ./docker/rust
+      network: host
+    volumes:
+      - ${SRC_PATH}:/var/korat_os
+      - ${SRC_PATH}/target:/var/korat_os/target
+    tty:
+      true
