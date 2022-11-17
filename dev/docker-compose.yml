@@ -14,5 +14,8 @@ services:
     volumes:
       - ${SRC_PATH}:/var/korat_os
       - ${SRC_PATH}/target:/var/korat_os/target
+      - /tmp/.X11-unix/:/tmp/.X11-unix/
+    environment:
+      - DISPLAY=$DISPLAY
     tty:
       true
