@@ -8,7 +8,7 @@ QEMU is configured to be used with `curses` option. This allows you to view the
 virtual machine's console directly in a virtual terminal. This is useful for 
 development in a Docker environment.
 
-![exec `cargo run`](/note/assets/qemu_run.mp4)
+<div><video controls src="https://github.com/ichigo-dev/korat_os/blob/main/note/assets/qemu_run.mp4" muted="false"></video></div>
 
 To exit the emulator, press `alt` + `2` to connect to the QEMU monitor and press 
 `q`.
