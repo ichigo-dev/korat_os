@@ -12,34 +12,23 @@ mod vga_buffer;
 use core::panic::PanicInfo;
 
 //------------------------------------------------------------------------------
-//  panic handler
+//  The entry point function.
+//
+//  Linker looks for a function named `_start` by default.
 //------------------------------------------------------------------------------
-#[panic_handler]
-fn panic( _info: &PanicInfo ) -> !
+#[no_mangle]
+pub extern "C" fn _start() -> !
 {
+    println!("Hello, world");
     loop {}
 }
 
 //------------------------------------------------------------------------------
-//  entry point
-//
-//  linker looks for a function named `_start` by default
+//  The function is called on panic.
 //------------------------------------------------------------------------------
-static HELLO: &[u8] = b"Hello World!";
-
-#[no_mangle]
-pub extern "C" fn _start() -> !
+#[panic_handler]
+fn panic( info: &PanicInfo ) -> !
 {
-    let vga_buffer = 0xb8000 as *mut u8;
-
-    for (i, &byte) in HELLO.iter().enumerate()
-    {
-        unsafe
-        {
-            *vga_buffer.offset(i as isize * 2) = byte;
-            *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
-        }
-    }
-
+    println!("{}", info);
     loop {}
 }
