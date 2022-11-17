@@ -16,6 +16,6 @@ services:
       - ${SRC_PATH}/target:/var/korat_os/target
       - /tmp/.X11-unix/:/tmp/.X11-unix/
     environment:
-      - DISPLAY=$DISPLAY
+      - DISPLAY=${DISPLAY}
     tty:
       true
