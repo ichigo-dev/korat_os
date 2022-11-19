@@ -2,6 +2,18 @@
 
     GDT: Global Descriptor Table
 
+    ----------------------------------------------------------------------------
+
+    In computing, a task is a unit of execution or a unit of work.
+
+    The task state segment (TSS) is a structure on x86-based computers which 
+    holds information about a task.
+
+    The Global Descriptor Table (GDT) is a binary data structure specific to 
+    the x86-64 architectures. It contains entries telling the CPU about memory 
+    segments. A similar Interrupt Descriptor Table exists containing task and 
+    interrupt descriptors.
+
 */
 
 use x86_64::VirtAddr;
