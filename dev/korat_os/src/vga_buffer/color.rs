@@ -1,3 +1,24 @@
+/*
+
+    Colors in VGA text mode
+
+    ----------------------------------------------------------------------------
+
+    The following colors can be used for characters displayed on the screen.
+
+    | Number | Color        | Number | Color        |
+    | ------ | ------------ | ------ | ------------ |
+    | 0x0    | Black        | 0x8    | Dark Gray    |
+    | 0x1    | Blue         | 0x9    | Light Blue   |
+    | 0x2    | Green        | 0xa    | Light Green  |
+    | 0x3    | Cyan         | 0xb    | Light Cyan   |
+    | 0x4    | Red          | 0xc    | Light Red    |
+    | 0x5    | Magenta      | 0xd    | Pink         |
+    | 0x6    | Brown        | 0xe    | Yellow       |
+    | 0x7    | Light Gray   | 0xf    | White        |
+
+*/
+
 //------------------------------------------------------------------------------
 //  The standard color palette in VGA text mode
 //------------------------------------------------------------------------------

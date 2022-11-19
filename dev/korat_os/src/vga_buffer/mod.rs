@@ -1,3 +1,25 @@
+/*
+
+    VGA text mode
+
+    ----------------------------------------------------------------------------
+
+    The VGA text mode is a simple way to print text to the screen. In VGA text 
+    mode, to print a character to the screen, it must be written to the VGA 
+    hardware's text buffer. To print a character to the screen in VGA text 
+    mode, one has to write it to the text buffer of the VGA hardware.
+
+    In a VGA text buffer, characters have the following memory format.
+
+    | Bit(s)  | Value            |
+    | ------- | ---------------- |
+    | 0 ~ 7   | ASCII code point |
+    | 8 ~ 11  | Forground color  |
+    | 12 ~ 14 | Background color |
+    | 15      | Blink            |
+
+*/
+
 mod color;
 
 use crate::vga_buffer::color::{ Color, ColorCode };

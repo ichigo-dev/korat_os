@@ -1,3 +1,13 @@
+/*
+
+    Serial
+
+    ----------------------------------------------------------------------------
+
+    Serial transfer is one of the data transfer methods, and is a mechanism for 
+    serially transferring data bit by bit.
+
+*/
 use uart_16550::SerialPort;
 use spin::Mutex;
 use lazy_static::lazy_static;

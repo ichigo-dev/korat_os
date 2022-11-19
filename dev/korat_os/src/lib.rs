@@ -1,3 +1,13 @@
+/*
+
+    Korat OS
+
+    ----------------------------------------------------------------------------
+
+    A simple OS written in Rust. It contains a framework for running tests.
+
+*/
+
 #![no_std]
 #![cfg_attr(test, no_main)]
 
