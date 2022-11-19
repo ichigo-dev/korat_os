@@ -11,6 +11,7 @@
 #![no_std]
 #![cfg_attr(test, no_main)]
 
+#![feature(abi_x86_interrupt)]
 #![feature(custom_test_frameworks)]
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
@@ -19,6 +20,7 @@ use core::panic::PanicInfo;
 
 pub mod serial;
 pub mod vga_buffer;
+pub mod interrupts;
 
 //------------------------------------------------------------------------------
 //  Runs tests.
@@ -95,6 +97,7 @@ pub fn exit_qemu( exit_code: QemuExitCode )
 #[no_mangle]
 pub extern "C" fn _start() -> !
 {
+    init();
     test_main();
     loop {}
 }
@@ -107,4 +110,12 @@ pub extern "C" fn _start() -> !
 fn panic( info: &PanicInfo ) -> !
 {
     test_panic_handler(info);
+}
+
+//------------------------------------------------------------------------------
+//  Initialization function.
+//------------------------------------------------------------------------------
+pub fn init()
+{
+    interrupts::init_idt();
 }
