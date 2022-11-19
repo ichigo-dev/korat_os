@@ -12,6 +12,11 @@ bare metal (no_std). This OS currently has the following features.
 - A test framework
 
 
+## Development memo
+
+- [memo](/note/memo.md)
+
+
 ## References
 
 - ["Write an OS in Rust", Philipp Oppermann (2022/11/19)](https://os.phil-opp.com/)
