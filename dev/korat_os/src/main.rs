@@ -33,7 +33,7 @@ pub extern "C" fn _start() -> !
     #[cfg(test)]
     test_main();
 
-    loop {}
+    korat_os::hlt_loop();
 }
 
 //------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ pub extern "C" fn _start() -> !
 fn panic( info: &PanicInfo ) -> !
 {
     println!("{}", info);
-    loop {}
+    korat_os::hlt_loop();
 }
 
 #[cfg(test)]
