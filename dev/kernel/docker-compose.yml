@@ -13,6 +13,6 @@ services:
       network: host
     volumes:
       - ${HOST_SRC_PATH}:${CONTAINER_SRC_PATH}
-      - ${HOST_SRC_PATH}/target:${CONTAINER_TARGET_PATH}
+      - ${HOST_TARGET_PATH}:${CONTAINER_TARGET_PATH}
     tty:
       true
