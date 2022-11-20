@@ -45,11 +45,14 @@
 
 */
 
-use crate::{ print, println };
-use crate::gdt;
+use crate::{ print, println, gdt, hlt_loop };
 
 use lazy_static::lazy_static;
-use x86_64::structures::idt::{ InterruptDescriptorTable, InterruptStackFrame };
+use x86_64::structures::idt::{
+    InterruptDescriptorTable,
+    InterruptStackFrame,
+    PageFaultErrorCode,
+};
 use pic8259::ChainedPics;
 use spin;
 
@@ -61,6 +64,7 @@ lazy_static!
 
         //  Exception handler
         idt.breakpoint.set_handler_fn(breakpoint_handler);
+        idt.page_fault.set_handler_fn(page_fault_handler);
         unsafe
         {
             idt.double_fault
@@ -135,12 +139,31 @@ extern "x86-interrupt" fn breakpoint_handler( stack_frame: InterruptStackFrame )
 }
 
 //------------------------------------------------------------------------------
+//  A page fault is a hardware-generated interrupt (or exception) when a 
+//  program accesses a page in a virtual address space that is not mapped to 
+//  physical memory.
+//------------------------------------------------------------------------------
+extern "x86-interrupt" fn page_fault_handler
+(
+    stack_frame: InterruptStackFrame,
+    error_code: PageFaultErrorCode,
+)
+{
+    use x86_64::registers::control::Cr2;
+
+    println!("EXCEPTION: PAGE FAULT");
+    println!("Accessed Address: {:?}", Cr2::read());
+    println!("Error Code: {:?}", error_code);
+    println!("{:#?}", stack_frame);
+    hlt_loop();
+}
+
+//------------------------------------------------------------------------------
 //  A double-fault exception is executed when the CPU fails to call an 
 //  exception handler. If the call to the double-fault exception fails, a more 
 //  fatal triple fault exception is raised and attempts to reset the system.
 //------------------------------------------------------------------------------
-extern "x86-interrupt" fn double_fault_handler
-(
+extern "x86-interrupt" fn double_fault_handler(
     stack_frame: InterruptStackFrame,
     error_code: u64,
 ) -> !
@@ -151,8 +174,7 @@ extern "x86-interrupt" fn double_fault_handler
 //------------------------------------------------------------------------------
 //  A timer interrupt hander.
 //------------------------------------------------------------------------------
-extern "x86-interrupt" fn timer_interrupt_handler
-(
+extern "x86-interrupt" fn timer_interrupt_handler(
     _stack_frame: InterruptStackFrame
 )
 {
@@ -170,8 +192,7 @@ extern "x86-interrupt" fn timer_interrupt_handler
 //
 //  Keyboard input will not receive further input until the scan code is read.
 //------------------------------------------------------------------------------
-extern "x86-interrupt" fn keyboard_interrupt_handler
-(
+extern "x86-interrupt" fn keyboard_interrupt_handler(
     _stack_frame: InterruptStackFrame
 )
 {
