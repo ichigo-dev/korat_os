@@ -1,8 +1,8 @@
 # Korat OS
 
-![marko-ganzaro-NLSjrj5S-pg-unsplash](https://user-images.githubusercontent.com/118079373/202865746-19fb98c9-b38c-4492-a7df-6a5fecddecc4.jpg)
-
 This is a project to implement a simple OS in Rust.
+
+![marko-ganzaro-NLSjrj5S-pg-unsplash](https://user-images.githubusercontent.com/118079373/202865746-19fb98c9-b38c-4492-a7df-6a5fecddecc4.jpg)
 
 
 ## Overview
