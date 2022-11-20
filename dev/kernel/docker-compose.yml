@@ -7,15 +7,12 @@ services:
   ##############################################################################
   rust:
     container_name: ${RUST_CONTAINER}
-    working_dir: /var/korat_os
+    working_dir: ${CONTAINER_SRC_PATH}
     build:
       context: ./docker/rust
       network: host
     volumes:
-      - ${SRC_PATH}:/var/korat_os
-      - ${SRC_PATH}/target:/var/korat_os/target
-      - /tmp/.X11-unix/:/tmp/.X11-unix/
-    environment:
-      - DISPLAY=${DISPLAY}
+      - ${HOST_SRC_PATH}:${CONTAINER_SRC_PATH}
+      - ${HOST_SRC_PATH}/target:${CONTAINER_TARGET_PATH}
     tty:
       true
