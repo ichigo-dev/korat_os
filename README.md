@@ -14,6 +14,18 @@ bare metal (no_std). This OS currently has the following features.
 - A test framework
 
 
+## Goal
+
+Implement a safer and faster OS in Rust. I'm thinking of installing a GUI 
+mechanism including a display manager here.
+
+[Redox](https://www.redox-os.org/)([github](https://github.com/redox-os/redox)) 
+is an ideal form close to what I imagine.
+
+It is basically a project for learning purposes and not targeted for full-scale 
+use.
+
+
 ## Development memo
 
 - [memo](/note/memo.md)
